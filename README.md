@@ -24,11 +24,11 @@ Incluye un **backtest forward** out-of-sample y un **backtest de portafolio** co
 
 ## 📓 Notebooks
 
-| Notebook | Descripción |
-|---|---|
-| [`notebooks/modeloparapresentar_finbertreal.ipynb`](notebooks/modeloparapresentar_finbertreal.ipynb) | Caso profundo sobre **NVDA**: EDA, sentimiento **FinBERT real**, ensemble por régimen, matrices de confusión e importancia de variables. |
-| [`notebooks/modelomejoradoparalinkedin.ipynb`](notebooks/modelomejoradoparalinkedin.ipynb) | Pipeline **multi-ticker** (AAPL, AMD, META, MSFT, NVDA) + backtest de portafolio. |
-| [`notebooks/modelomejoradoparalinkedin_mejoras.ipynb`](notebooks/modelomejoradoparalinkedin_mejoras.ipynb) | Versión refactorizada del anterior (manejo robusto de claves vía variables de entorno y helpers de red). |
+| # | Notebook | Descripción |
+|---|---|---|
+| 1️⃣ | [`01_nvda_finbert_case_study.ipynb`](notebooks/01_nvda_finbert_case_study.ipynb) | **Caso de estudio profundo sobre NVDA**: EDA, sentimiento **FinBERT real**, ensemble por régimen, matrices de confusión, *permutation importance* y análisis de outliers. La metodología en detalle. |
+| 2️⃣ | [`02_multiticker_ensemble_portfolio.ipynb`](notebooks/02_multiticker_ensemble_portfolio.ipynb) | **Generalización multi-ticker** (AAPL, AMD, META, MSFT, NVDA) + **backtest de portafolio** con risk parity. El resultado integral del proyecto. |
+| 3️⃣ | [`03_pipeline_refactored.ipynb`](notebooks/03_pipeline_refactored.ipynb) | **Versión refactorizada** del pipeline: claves vía variables de entorno y helpers de red robustos. El enfoque de ingeniería. |
 
 ---
 
@@ -125,10 +125,10 @@ en lugar de ocultarlo:
 
 ```
 .
-├── notebooks/                      # Los 3 notebooks del proyecto
-│   ├── modeloparapresentar_finbertreal.ipynb     # NVDA + FinBERT (caso profundo)
-│   ├── modelomejoradoparalinkedin.ipynb          # Multi-ticker + portafolio
-│   └── modelomejoradoparalinkedin_mejoras.ipynb  # Versión refactorizada
+├── notebooks/                      # Los 3 notebooks del proyecto (secuencia de lectura)
+│   ├── 01_nvda_finbert_case_study.ipynb          # NVDA + FinBERT (caso profundo)
+│   ├── 02_multiticker_ensemble_portfolio.ipynb   # Multi-ticker + portafolio
+│   └── 03_pipeline_refactored.ipynb              # Versión refactorizada
 ├── data/                           # Datos de entrada
 │   ├── sp500.csv                   #   Benchmark de mercado
 │   └── sp500_test.csv
