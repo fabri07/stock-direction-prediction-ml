@@ -1,0 +1,11 @@
+ticker,strategy,trades,win_rate,avg_return,max_drawdown,sharpe,total_return,forward_file
+AAPL,Stacking + ADX,56,0.4821,0.00034,-0.0652,0.374,0.0146,AAPL_forward_2025-09-02_to_2025-12-11_ADXdyn.csv
+AAPL,Stacking puro,55,0.4727,0.00023,-0.0684,0.253,0.0084,AAPL_forward_2025-09-02_to_2025-12-11_ADXdyn.csv
+AMD,Stacking + ADX,26,0.5,0.01117,-0.1173,1.717,0.2773,AMD_forward_2025-09-02_to_2025-12-11_ADXdyn.csv
+AMD,Stacking puro,43,0.5349,0.00757,-0.1428,1.865,0.3184,AMD_forward_2025-09-02_to_2025-12-11_ADXdyn.csv
+META,Stacking + ADX,20,0.4,-0.00602,-0.1659,-1.746,-0.1213,META_forward_2025-09-02_to_2025-12-11_ADXdyn.csv
+META,Stacking puro,20,0.4,-0.00602,-0.1659,-1.746,-0.1213,META_forward_2025-09-02_to_2025-12-11_ADXdyn.csv
+MSFT,Stacking + ADX,27,0.4815,-0.00092,-0.0534,-0.768,-0.0262,MSFT_forward_2025-09-02_to_2025-12-11_ADXdyn.csv
+MSFT,Stacking puro,31,0.5484,-2e-05,-0.0512,-0.019,-0.0026,MSFT_forward_2025-09-02_to_2025-12-11_ADXdyn.csv
+NVDA,Stacking + ADX,32,0.4375,-0.00197,-0.1487,-0.81,-0.0711,NVDA_forward_2025-09-02_to_2025-12-11_ADXdyn.csv
+NVDA,Stacking puro,39,0.4615,-0.00027,-0.0972,-0.124,-0.0228,NVDA_forward_2025-09-02_to_2025-12-11_ADXdyn.csv

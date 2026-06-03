@@ -1,0 +1,31 @@
+# Modelos entrenados (binarios pesados — se regeneran al ejecutar los notebooks)
+*.joblib
+
+# Secretos y entornos
+.env
+.env.local
+
+# Carpeta de archivos descartados (no forma parte del proyecto)
+_descartado/
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Claude Code
+.claude/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# OS
+Thumbs.db
+.DS_Store

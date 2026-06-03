@@ -1,0 +1,20 @@
+# Núcleo de datos / ML
+pandas
+numpy
+scikit-learn
+xgboost
+lightgbm
+joblib
+
+# NLP financiero (FinBERT)
+torch
+transformers
+
+# Ingesta de datos / noticias
+requests
+urllib3
+feedparser
+tqdm
+
+# Visualización
+matplotlib

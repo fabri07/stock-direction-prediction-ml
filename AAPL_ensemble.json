@@ -1,0 +1,13 @@
+{
+  "model_p1": "AAPL_2000_2019_model.joblib",
+  "model_p2": "AAPL_2020_2025_model.joblib",
+  "weights": {
+    "p1": 0.842982037111938,
+    "p2": 0.8485299506458611
+  },
+  "thresholds": {
+    "p1": 0.5,
+    "p2": 0.4375,
+    "weighted": 0.46864750454079557
+  }
+}
