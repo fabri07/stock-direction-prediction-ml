@@ -61,6 +61,11 @@ combinados en un meta-modelo de *stacking*.
 | MSFT | 0.871 | 0.863 |
 | NVDA | 0.868 | 0.859 |
 
+<p align="center">
+  <img src="cm_period_vote_holdout.png" width="420" alt="Matriz de confusión — holdout (period vote)">
+</p>
+<p align="center"><sub>Matriz de confusión en el holdout temporal (ensemble <i>period vote</i>).</sub></p>
+
 ### Backtest forward (sep–dic 2025, *Stacking + ADX*)
 
 | Ticker | Trades | Win-rate | Sharpe | Retorno total | Max DD |
@@ -74,6 +79,11 @@ combinados en un meta-modelo de *stacking*.
 > El forward (out-of-sample real) muestra resultados **mixtos** frente a la fuerte performance en
 > holdout — un recordatorio honesto de la diferencia entre validación histórica y mercado real.
 > Ver `multi_ticker_pnl_summary.csv` y `portfolio_backtest_aggregated.csv` para el detalle.
+
+<p align="center">
+  <img src="portfolio_equity_curve.png" width="760" alt="Equity curve del portafolio en el backtest forward">
+</p>
+<p align="center"><sub>Equity curve del portafolio (equal-risk): llegó a +6% y devolvió las ganancias hasta cerrar en −1.7%.</sub></p>
 
 ---
 
@@ -95,6 +105,7 @@ combinados en un meta-modelo de *stacking*.
 ├── features_*_2periods.csv                   # Features unión / intersección entre periodos
 ├── imp_permutation_*.csv                      # Permutation importance
 ├── cm_*.png                                   # Matrices de confusión
+├── portfolio_equity_curve.png                 # Equity curve del backtest
 ├── requirements.txt
 └── .env.example                               # Plantilla de claves de API
 ```
