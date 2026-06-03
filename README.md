@@ -26,9 +26,9 @@ Incluye un **backtest forward** out-of-sample y un **backtest de portafolio** co
 
 | Notebook | Descripción |
 |---|---|
-| [`modeloparapresentar_finbertreal.ipynb`](modeloparapresentar_finbertreal.ipynb) | Caso profundo sobre **NVDA**: EDA, sentimiento **FinBERT real**, ensemble por régimen, matrices de confusión e importancia de variables. |
-| [`modelomejoradoparalinkedin.ipynb`](modelomejoradoparalinkedin.ipynb) | Pipeline **multi-ticker** (AAPL, AMD, META, MSFT, NVDA) + backtest de portafolio. |
-| [`modelomejoradoparalinkedin_mejoras.ipynb`](modelomejoradoparalinkedin_mejoras.ipynb) | Versión refactorizada del anterior (manejo robusto de claves vía variables de entorno y helpers de red). |
+| [`notebooks/modeloparapresentar_finbertreal.ipynb`](notebooks/modeloparapresentar_finbertreal.ipynb) | Caso profundo sobre **NVDA**: EDA, sentimiento **FinBERT real**, ensemble por régimen, matrices de confusión e importancia de variables. |
+| [`notebooks/modelomejoradoparalinkedin.ipynb`](notebooks/modelomejoradoparalinkedin.ipynb) | Pipeline **multi-ticker** (AAPL, AMD, META, MSFT, NVDA) + backtest de portafolio. |
+| [`notebooks/modelomejoradoparalinkedin_mejoras.ipynb`](notebooks/modelomejoradoparalinkedin_mejoras.ipynb) | Versión refactorizada del anterior (manejo robusto de claves vía variables de entorno y helpers de red). |
 
 ---
 
@@ -62,7 +62,7 @@ combinados en un meta-modelo de *stacking*.
 | NVDA | 0.868 | 0.859 |
 
 <p align="center">
-  <img src="cm_period_vote_holdout.png" width="420" alt="Matriz de confusión — holdout (period vote)">
+  <img src="figures/cm_period_vote_holdout.png" width="420" alt="Matriz de confusión — holdout (period vote)">
 </p>
 <p align="center"><sub>Matriz de confusión en el holdout temporal (ensemble <i>period vote</i>).</sub></p>
 
@@ -78,10 +78,10 @@ combinados en un meta-modelo de *stacking*.
 
 > El forward (out-of-sample real) muestra resultados **mixtos** frente a la fuerte performance en
 > holdout — un recordatorio honesto de la diferencia entre validación histórica y mercado real.
-> Ver `multi_ticker_pnl_summary.csv` y `portfolio_backtest_aggregated.csv` para el detalle.
+> Ver `results/backtest/multi_ticker_pnl_summary.csv` y `results/backtest/portfolio_backtest_aggregated.csv` para el detalle.
 
 <p align="center">
-  <img src="portfolio_equity_curve.png" width="760" alt="Equity curve del portafolio en el backtest forward">
+  <img src="figures/portfolio_equity_curve.png" width="760" alt="Equity curve del portafolio en el backtest forward">
 </p>
 <p align="center"><sub>Equity curve del portafolio (equal-risk): llegó a +6% y devolvió las ganancias hasta cerrar en −1.7%.</sub></p>
 
@@ -125,27 +125,28 @@ en lugar de ocultarlo:
 
 ```
 .
-├── modeloparapresentar_finbertreal.ipynb     # NVDA + FinBERT (caso profundo)
-├── modelomejoradoparalinkedin.ipynb          # Multi-ticker + portafolio
-├── modelomejoradoparalinkedin_mejoras.ipynb  # Versión refactorizada
-├── sp500.csv / sp500_test.csv                # Benchmark de mercado
-├── <TICKER>_ensemble.json                    # Config del ensemble (pesos + umbrales)
-├── <TICKER>_results_summary.json             # Métricas de clasificación
-├── <TICKER>_forward_*_ADXdyn.csv             # Señales/retornos forward por ticker
-├── multi_ticker_pnl_summary.csv              # Resumen P&L de la estrategia
-├── per_ticker_strategy_metrics.csv           # Métricas detalladas por ticker
-├── portfolio_backtest_*.csv                  # Backtest de portafolio
-├── portfolio_weights_equal_risk.csv          # Pesos equal-risk
-├── features_*_2periods.csv                   # Features unión / intersección entre periodos
-├── imp_permutation_*.csv                      # Permutation importance
-├── cm_*.png                                   # Matrices de confusión
-├── portfolio_equity_curve.png                 # Equity curve del backtest
+├── notebooks/                      # Los 3 notebooks del proyecto
+│   ├── modeloparapresentar_finbertreal.ipynb     # NVDA + FinBERT (caso profundo)
+│   ├── modelomejoradoparalinkedin.ipynb          # Multi-ticker + portafolio
+│   └── modelomejoradoparalinkedin_mejoras.ipynb  # Versión refactorizada
+├── data/                           # Datos de entrada
+│   ├── sp500.csv                   #   Benchmark de mercado
+│   └── sp500_test.csv
+├── results/
+│   ├── ensembles/                  # <TICKER>_ensemble.json (pesos + umbrales)
+│   │                               # <TICKER>_results_summary.json (métricas de clasificación)
+│   ├── backtest/                   # Forwards por ticker, P&L y backtest de portafolio
+│   │                               #   multi_ticker_pnl_summary.csv, per_ticker_strategy_metrics.csv,
+│   │                               #   portfolio_backtest_*.csv, portfolio_weights_equal_risk.csv
+│   └── analysis/                   # features_*_2periods.csv, imp_permutation_*.csv
+├── figures/                        # cm_*.png (matrices de confusión) + portfolio_equity_curve.png
+├── models/                         # Modelos entrenados *.joblib (excluidos del repo por tamaño)
 ├── requirements.txt
-├── .env.example                               # Plantilla de claves de API
-└── LICENSE                                     # MIT
+├── .env.example                    # Plantilla de claves de API
+└── LICENSE                         # MIT
 ```
 
-> Los modelos entrenados (`*.joblib`) se excluyen del repositorio por tamaño; se regeneran al ejecutar los notebooks.
+> Los modelos entrenados (`models/*.joblib`) se excluyen del repositorio por tamaño; se regeneran al ejecutar los notebooks.
 
 ---
 
@@ -165,7 +166,13 @@ en lugar de ocultarlo:
    ```
    Los notebooks leen las claves con `os.getenv(...)`; nunca se versionan claves en el código.
 
-3. **Abrir y ejecutar** cualquiera de los notebooks en Jupyter / VS Code.
+3. **Abrir y ejecutar** cualquiera de los notebooks en `notebooks/` con Jupyter / VS Code.
+
+> 📌 **Nota sobre rutas:** los artefactos incluidos (`results/`, `figures/`) se generaron ejecutando
+> los notebooks desde la raíz del proyecto, por lo que referencian archivos por nombre (p. ej.
+> `sp500.csv`). Tras la reorganización en carpetas, para **re-ejecutarlos** conviene ajustar las
+> rutas de entrada/salida a la nueva estructura (`data/`, `results/`, `models/`) o lanzarlos desde
+> la raíz. Los resultados ya provistos permiten inspeccionar el proyecto sin necesidad de re-correrlo.
 
 ---
 
