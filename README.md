@@ -87,6 +87,40 @@ combinados en un meta-modelo de *stacking*.
 
 ---
 
+## 🔍 Resultados y limitaciones (análisis crítico)
+
+La diferencia entre el **holdout** (F1 ≈ 0.85–0.90) y el **forward** (Sharpe mayormente
+negativo, portafolio −1.7%) es el hallazgo más interesante del proyecto y vale la pena entenderlo
+en lugar de ocultarlo:
+
+- **Holdout temporal ≠ mercado real.** Aunque la validación respeta el orden cronológico, los
+  umbrales de decisión y los pesos del ensemble se **optimizaron sobre el holdout**, lo que infla
+  la métrica reportada respecto a datos verdaderamente no vistos (un sesgo de optimización clásico).
+- **Cambio de régimen.** El forward (sep–dic 2025) es un período corto (~3 meses, 20–56 trades por
+  ticker) y puede no parecerse a los regímenes de entrenamiento (2000–2019 / 2020–2025). Con tan
+  pocas operaciones, el Sharpe tiene **alta varianza** y poca significancia estadística.
+- **Dispersión entre activos.** AMD fue claramente rentable (Sharpe 1.7, +27.7%) mientras META
+  perdió (−12%). Esto sugiere que la señal **no generaliza de forma homogénea** y que el resultado
+  agregado depende mucho de pocos activos.
+- **Fricciones no modeladas por completo.** Costos de transacción, slippage y disponibilidad real
+  de noticias (cobertura de Finnhub variable por fecha) afectan el desempeño *live* y no están
+  totalmente capturados en el backtest.
+- **Riesgo de look-ahead en features.** Fundamentales (FMP) y macro (FRED) se inyectan con
+  *forward-fill* del último valor conocido; aunque se cuida la fecha de corte, es un punto sensible
+  a auditar en cualquier sistema de trading.
+
+### Qué haría a continuación
+1. **Validación walk-forward / purged K-fold** con *embargo* para eliminar el sesgo de optimización de umbrales.
+2. **Modelar costos** (comisiones + slippage) y *position sizing* por volatilidad dentro del backtest.
+3. **Ampliar la ventana out-of-sample** y testear en más activos para medir generalización real.
+4. **Recalibración periódica** del ensemble y monitoreo de *drift* entre el régimen de entrenamiento y el actual.
+
+> **Conclusión honesta:** el sistema demuestra capacidad predictiva fuerte *in-sample* pero
+> rendimiento *out-of-sample* modesto — un resultado realista que refleja lo difícil que es trasladar
+> precisión de clasificación a rentabilidad operativa neta.
+
+---
+
 ## 📁 Estructura del repositorio
 
 ```
@@ -107,7 +141,8 @@ combinados en un meta-modelo de *stacking*.
 ├── cm_*.png                                   # Matrices de confusión
 ├── portfolio_equity_curve.png                 # Equity curve del backtest
 ├── requirements.txt
-└── .env.example                               # Plantilla de claves de API
+├── .env.example                               # Plantilla de claves de API
+└── LICENSE                                     # MIT
 ```
 
 > Los modelos entrenados (`*.joblib`) se excluyen del repositorio por tamaño; se regeneran al ejecutar los notebooks.
@@ -144,3 +179,7 @@ combinados en un meta-modelo de *stacking*.
 ## 👤 Autor
 
 **Fabrizio Sola** — Tecnicatura en Ciencia de Datos.
+
+## 📄 Licencia
+
+Distribuido bajo licencia **MIT**. Ver [`LICENSE`](LICENSE) para más detalles.
